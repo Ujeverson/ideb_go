@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGOUT_REDIRECT_URL = '/'  # Redireciona para a página inicial ao fazer logout
+
 
 # Application definition
 
@@ -37,6 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # Minhas apps
+    'core',
+    'accounts',
+    'insights',
+    'people',
 ]
 
 MIDDLEWARE = [
