@@ -11,7 +11,11 @@ def desabilitar_pessoas(modeladmin, request, queryset):
 
 @admin.register(Pessoa)
 class PessoaAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'email', 'celular', 'funcao', 'ativo')
-    search_fields = ('nome', 'email')
+    list_display = ('nome', 'email', 'celular', 'funcao', 'data_nascimento', 'idade', 'ativo')  # Adicionado 'idade'
+    search_fields = ('nome', 'email', 'data_nascimento')
     list_filter = ('ativo', 'funcao')
     actions = [habilitar_pessoas, desabilitar_pessoas]
+
+    def idade(self, obj):
+        return obj.idade()  # Chama o método idade() do modelo
+    idade.short_description = 'Idade'  # Nome da coluna no admin

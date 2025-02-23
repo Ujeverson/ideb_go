@@ -1,25 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-</head>
-<body class="container">
-    <h1>Login</h1>
+{% extends 'core/base.html' %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+<div class="container">
+    <h2>Login</h2>
     <form method="post">
         {% csrf_token %}
-        <!-- Django gera um campo para username e password automaticamente se usarmos auth_views -->
         {{ form.as_p }}
-
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary">Entrar</button>
     </form>
-    <hr>
-    <a href="{% url 'accounts:logout' %}">Logout</a>
-    <!-- Scripts Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-</body>
-</html>
+</div>
+{% endblock content %}

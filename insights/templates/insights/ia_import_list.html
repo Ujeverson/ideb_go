@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% block title %}Lista de Arquivos{% endblock title %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2>Arquivos Enviados</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome do Arquivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in dados %}
+                <tr>
+                    <td>{{ item.arquivo.name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

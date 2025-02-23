@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% block title %}Treinar KNN{% endblock title %}
+{% block content %}
+<h2>Treinar Modelo KNN</h2>
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="arquivo_id">Selecione o arquivo</label>
+        <select name="arquivo_id" id="arquivo_id" class="form-control">
+            <option value="">-- Selecione um arquivo --</option>
+            {% for item in arquivos %}
+            <option value="{{ item.id }}">{{ item.arquivo.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Treinar</button>
+</form>
+{% endblock content %}

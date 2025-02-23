@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+{% block title %}Resultado do Treino{% endblock title %}
+{% block content %}
+<h2>Resultado do Treino KNN</h2>
+{% if message %}
+    <div class="alert alert-info">
+        {{ message }}
+    </div>
+{% endif %}
+{% if classif_report %}
+    <pre>{{ classif_report }}</pre>
+{% endif %}
+{% endblock content %}

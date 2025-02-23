@@ -20,5 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls', namespace='accounts')),
-    # Outras rotas de apps, como 'core/', 'insights/', etc.
+    path('', include('core.urls', namespace='core')),
+    path('insights/', include('insights.urls', namespace='insights')),
+    path('people/', include('people.urls', namespace='people')),
 ]
