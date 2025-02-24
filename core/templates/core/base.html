@@ -1,4 +1,9 @@
 {% load static %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -35,7 +40,7 @@
                             <a class="nav-link" href="{% url 'insights:ia_import' %}">Importar CSV</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Treinar KNN</a>
+                            <a href="{% url 'insights:treinar_knn' %}">Treinar KNN</a>
                         </li>
                     {% else %}
                         <li class="nav-item">

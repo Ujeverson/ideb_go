@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}Previsões{% endblock title %}
+{% block content %}
+<h1>Previsões do IDEB</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Valores Reais</th>
+            <th>Valores Previstos</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in resultados %}
+        <tr>
+            <td>{{ item.Valores_Reais }}</td>
+            <td>{{ item.Valores_Previstos }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'insights:ia_import' %}" class="btn btn-primary">Voltar</a>
+{% endblock content %}

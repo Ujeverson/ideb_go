@@ -4,6 +4,11 @@
 {% block title %}Página Inicial{% endblock title %}
 
 {% block content %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
 <div class="jumbotron">
     <h1 class="display-4">Bem-vindo ao IDEb Go!</h1>
     <p class="lead">Este é um sistema desenvolvido para análise de dados educacionais.</p>

@@ -1,6 +1,11 @@
 {% extends 'core/base.html' %}
 {% block title %}Resultado do Treino{% endblock title %}
 {% block content %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
 <h2>Resultado do Treino KNN</h2>
 {% if message %}
     <div class="alert alert-info">

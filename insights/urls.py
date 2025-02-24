@@ -9,4 +9,6 @@ urlpatterns = [
     path('visualizar/<int:pk>/', views.visualizar_dados, name='visualizar_dados'),
     path('treinar/<int:pk>/', views.treinar_knn, name='treinar_knn'),
     path('grafico/', views.grafico_view, name='grafico'),
+    path('previsoes/', views.prever_ideb, name='previsoes'),
+    path('treinar-knn/', views.treinar_knn_view, name='treinar_knn'),
 ]

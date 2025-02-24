@@ -1,6 +1,75 @@
 {% extends 'core/base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
 {% block title %}Treinar KNN{% endblock title %}
 {% block content %}
-<h2>Acurácia do Modelo KNN</h2>
-<p>Acurácia: {{ accuracy|floatformat:2 }}%</p>
+<h1>Resultados do Treinamento KNN</h1>
+
+<p><strong>MSE:</strong> {{ resultados.mse }}</p>
+<p><strong>R²:</strong> {{ resultados.r2 }}</p>
+
+<h2>Valores Reais vs. Previstos</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Valores Reais</th>
+            <th>Valores Previstos</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for real, pred in zip(resultados.y_test, resultados.y_pred) %}
+        <tr>
+            <td>{{ real }}</td>
+            <td>{{ pred }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Gráfico -->
+<div id="grafico"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('grafico').getContext('2d');
+    const grafico = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: Array.from({ length: {{ resultados.y_test|length }} }, (_, i) => i + 1),
+            datasets: [
+                {
+                    label: 'Valores Reais',
+                    data: {{ resultados.y_test }},
+                    borderColor: 'blue',
+                    borderWidth: 2,
+                    fill: false,
+                },
+                {
+                    label: 'Valores Previstos',
+                    data: {{ resultados.y_pred }},
+                    borderColor: 'red',
+                    borderWidth: 2,
+                    fill: false,
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Comparação entre Valores Reais e Previstos'
+                }
+            }
+        }
+    });
+</script>
+
+<a href="{% url 'insights:ia_import' %}" class="btn btn-primary">Voltar</a>
 {% endblock content %}

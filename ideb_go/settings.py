@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'insights',
     'people',
     'training',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
