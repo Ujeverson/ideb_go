@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+{% block title %}Perfil do Usuário{% endblock title %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2>Perfil do Usuário</h2>
+        <p><strong>Nome de Usuário:</strong> {{ user.username }}</p>
+        <p><strong>E-mail:</strong> {{ user.email }}</p>
+        <p><strong>Data de Registro:</strong> {{ user.date_joined }}</p>
+    </div>
+</div>
+{% endblock content %}

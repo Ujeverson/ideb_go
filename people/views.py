@@ -3,21 +3,18 @@ from django.contrib import messages
 from .models import Pessoa
 from .forms import PessoaForm
 from django.contrib.auth.decorators import login_required, permission_required
-from .models import Dados
+from django.contrib.auth.models import User
+
 
 @login_required
-@permission_required('insights.view_arquivos_enviados', raise_exception=True)
-def ia_import_list(request):
-    data = {}
-    data['dados'] = Dados.objects.all()
-    return render(request, 'insights/ia_import_list.html', data)
-
-
 def pessoa_list(request):
-    pessoas = Pessoa.objects.all()
-    for pessoa in pessoas:
-        pessoa.idade_calculada = pessoa.idade()  # Calcula a idade para cada pessoa
-    return render(request, 'people/pessoa_list.html', {'pessoas': pessoas})
+    # Verifica se o usuário é superusuário
+    if not request.user.is_superuser:
+        return render(request, 'people/permission_denied.html')  # Página de erro para permissão negada
+
+    # Lista todos os usuários do sistema
+    usuarios = User.objects.all()
+    return render(request, 'people/pessoa_list.html', {'usuarios': usuarios})
 
 def pessoa_create(request):
     if request.method == 'POST':
