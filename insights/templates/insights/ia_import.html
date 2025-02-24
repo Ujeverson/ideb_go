@@ -8,7 +8,7 @@
             {% csrf_token %}
             <div class="form-group">
                 <label for="arquivo_csv">Selecione um arquivo:</label>
-                <input type="file" class="form-control-file" id="arquivo_csv" name="arquivo_csv" required>
+                <input type="file" name="arquivo_csv" id="arquivo_csv" accept=".csv" required>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>

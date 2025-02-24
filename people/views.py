@@ -8,13 +8,10 @@ from django.contrib.auth.models import User
 
 @login_required
 def pessoa_list(request):
-    # Verifica se o usuário é superusuário
-    if not request.user.is_superuser:
-        return render(request, 'people/permission_denied.html')  # Página de erro para permissão negada
-
-    # Lista todos os usuários do sistema
-    usuarios = User.objects.all()
-    return render(request, 'people/pessoa_list.html', {'usuarios': usuarios})
+    pessoas = Pessoa.objects.all()
+    for pessoa in pessoas:
+        pessoa.idade_calculada = pessoa.idade()  # Calcula a idade para cada pessoa
+    return render(request, 'people/pessoa_list.html', {'pessoas': pessoas})
 
 def pessoa_create(request):
     if request.method == 'POST':

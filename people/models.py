@@ -23,6 +23,9 @@ class Pessoa(models.Model):
             idade = hoje.year - self.data_nascimento.year - ((hoje.month, hoje.day) < (self.data_nascimento.month, self.data_nascimento.day))
             return idade
         return None
+    
+    def __str__(self):
+        return f'{self.nome} - {self.email}'
 
     def clean(self):
         # Validação para garantir que a data de nascimento não seja no futuro

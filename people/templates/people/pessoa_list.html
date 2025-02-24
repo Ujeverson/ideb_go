@@ -1,27 +1,37 @@
 {% extends 'core/base.html' %}
-{% block title %}Lista de Usuários{% endblock title %}
+{% block title %}Lista de Pessoas{% endblock title %}
 {% block content %}
 <div class="row">
     <div class="col-md-12">
-        <h2>Lista de Usuários</h2>
+        <h2>Lista de Pessoas</h2>
+        <a href="{% url 'people:pessoa_create' %}" class="btn btn-primary mb-3">Criar Nova Pessoa</a>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Nome de Usuário</th>
-                    <th>E-mail</th>
-                    <th>Data de Registro</th>
-                    <th>Superusuário?</th>
-                    <th>Ativo?</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Celular</th>
+                    <th>Função</th>
+                    <th>Data de Nascimento</th>
+                    <th>Idade</th> 
+                    <th>Ativo</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                {% for usuario in usuarios %}
+                {% for pessoa in pessoas %}
                 <tr>
-                    <td>{{ usuario.username }}</td>
-                    <td>{{ usuario.email }}</td>
-                    <td>{{ usuario.date_joined }}</td>
-                    <td>{{ usuario.is_superuser|yesno:"Sim,Não" }}</td>
-                    <td>{{ usuario.is_active|yesno:"Sim,Não" }}</td>
+                    <td>{{ pessoa.nome }}</td>
+                    <td>{{ pessoa.email }}</td>
+                    <td>{{ pessoa.celular }}</td>
+                    <td>{{ pessoa.funcao }}</td>
+                    <td>{{ pessoa.data_nascimento }}</td>
+                    <td>{{ pessoa.idade_calculada }}</td> 
+                    <td>{{ pessoa.ativo }}</td>
+                    <td>
+                        <a href="{% url 'people:pessoa_update' pessoa.pk %}" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="{% url 'people:pessoa_delete' pessoa.pk %}" class="btn btn-sm btn-danger">Excluir</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
